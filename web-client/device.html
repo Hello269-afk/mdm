@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulated device — MDM demo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { display: grid; place-items: center; min-height: 100vh; padding: 24px; }
+    .phone {
+      width: 320px; background: #000; border-radius: 36px; padding: 14px;
+      box-shadow: var(--shadow); border: 2px solid #222;
+    }
+    .screen {
+      background: var(--panel); border-radius: 26px; min-height: 560px; overflow: hidden;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .screen .bar { text-align: center; font-size: 12px; color: var(--muted); padding: 10px; }
+    .pane { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .pane h3 { margin: 0 0 6px; font-size: 18px; }
+    .pane p { color: var(--muted); font-size: 13px; }
+    .terms { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; font-size: 13px; margin: 14px 0; }
+    .terms ul { padding-left: 18px; margin: 8px 0 0; }
+    .spacer { flex: 1; }
+    .managed-chip { font-size: 11px; color: var(--green); border: 1px solid rgba(63,185,80,.4); border-radius: 999px; padding: 4px 10px; display: inline-block; }
+    .lock-overlay {
+      position: absolute; inset: 0; background: rgba(2,6,20,.96); border-radius: 26px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px;
+    }
+    .lock-overlay .big { font-size: 46px; }
+    .app-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+    .app-icon { text-align: center; font-size: 12px; color: var(--muted); }
+    .app-icon .ic { width: 48px; height: 48px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--border); display: grid; place-items: center; font-size: 22px; margin: 0 auto 6px; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="screen" id="screen">
+      <div class="bar" id="statusbar">Simulated Android device</div>
+      <!-- consent pane -->
+      <div class="pane" id="consentPane">
+        <h3>Set up work device</h3>
+        <p>Your organisation wants to manage this device.</p>
+        <div class="terms" id="terms">Loading management terms…</div>
+        <div class="spacer"></div>
+        <button id="acceptBtn" style="width:100%;">Accept &amp; enrol</button>
+        <button class="secondary" id="declineBtn" style="width:100%;margin-top:8px;">Decline</button>
+      </div>
+      <!-- home pane (after enrol) -->
+      <div class="pane" id="homePane" hidden>
+        <span class="managed-chip">● Managed by your organisation</span>
+        <h3 style="margin-top:14px;">Work phone</h3>
+        <p id="homeMeta"></p>
+        <div class="app-grid" id="appGrid"></div>
+        <div class="spacer"></div>
+        <div class="disclosure">
+          <strong>This device reports to your admin:</strong>
+          compliance status, model, battery. <br>Never your screen, messages or location.
+        </div>
+      </div>
+      <!-- lock overlay -->
+      <div class="lock-overlay" id="lockOverlay" hidden>
+        <div class="big">🔒</div>
+        <div>Locked by your organisation</div>
+        <input id="pin" placeholder="Enter passcode" inputmode="numeric" />
+        <button id="unlockBtn" style="width:100%;">Unlock</button>
+      </div>
+    </div>
+  </div>
+  <script src="device.js"></script>
+</body>
+</html>

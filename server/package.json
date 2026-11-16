@@ -1,0 +1,18 @@
+{
+  "name": "mdm-demo-server",
+  "version": "1.0.0",
+  "description": "Educational MDM demo built on the Android Management API model. Enrolment-based, visible, owner-consented. Simulation mode plus a real Android Management API path.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "qrcode": "^1.5.3",
+    "ws": "^8.14.2"
+  },
+  "optionalDependencies": {
+    "googleapis": "^133.0.0"
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MDM Console — Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🛡️</div>
+      <div>
+        <h1>MDM Console</h1>
+        <p class="sub">Mobile Device Management — built on the Android Management API model</p>
+      </div>
+    </div>
+    <span id="modePill" class="mode-pill">connecting…</span>
+  </header>
+
+  <main class="layout">
+    <!-- Left column: enrolment + policy -->
+    <section>
+      <div class="panel">
+        <h2>1 · Choose a policy</h2>
+        <label for="policySelect">Policy to enrol against</label>
+        <select id="policySelect"></select>
+        <div id="disclosure" class="disclosure" hidden></div>
+      </div>
+
+      <div class="panel" style="margin-top:20px;">
+        <h2>2 · Enrol a device</h2>
+        <button id="genToken" style="width:100%;">Generate enrolment QR</button>
+        <div id="qrBox" class="qr-box" hidden>
+          <img id="qrImg" alt="Enrolment QR" />
+          <div class="hint">Scan this on the device (or open the link). The owner sees the management terms and accepts before anything is applied.</div>
+          <div class="hint" id="qrLink"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:20px;">
+        <h2>Activity</h2>
+        <div id="log" class="log"></div>
+      </div>
+    </section>
+
+    <!-- Right column: devices -->
+    <section>
+      <div class="panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <h2 style="margin:0;">Managed devices</h2>
+          <button class="secondary small" id="refresh">Refresh</button>
+        </div>
+        <div id="devices" class="devices" style="margin-top:16px;">
+          <div class="empty" id="emptyState">No devices enrolled yet. Generate a QR and enrol one.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

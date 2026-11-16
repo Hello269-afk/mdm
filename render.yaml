@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: mdm-demo
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install --omit=optional
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MODE
+        value: sim
